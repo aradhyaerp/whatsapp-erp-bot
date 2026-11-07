@@ -1,2 +1,122 @@
-# whatsapp-erp-bot
-🤖 Official WhatsApp Chatbot &amp; Interactive Action Bot for Aradhya ERP — Automating Fee Inquiries, Attendance, Homework &amp; Notices for Parents via WhatsApp.
+# 🤖 Aradhya ERP — Interactive WhatsApp Action Bot & Webhook Gateway
+
+<div align="center">
+
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-Interactive_Bot-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/919955882299?text=Hi!+I%27m+interested+in+Aradhya+ERP)
+[![Status](https://img.shields.io/badge/Engine-OpenWA_•_Baileys-blue?style=for-the-badge)](https://aradhyaerp.in)
+[![ERP Integration](https://img.shields.io/badge/Aradhya_ERP-Live_Sync-1e315a?style=for-the-badge)](https://aradhyaerp.in)
+[![License](https://img.shields.io/badge/License-Proprietary_SaaS-orange?style=for-the-badge)](https://aradhyaerp.in)
+
+**Instant WhatsApp-Based Student Self-Service for Parents & Schools**  
+*Check Fees, Pay Online via UPI, Check Daily Attendance, View Homework & Read Notices Directly in WhatsApp.*
+
+[🚀 Official Website](https://aradhyaerp.in) • [💳 Pricing Plans](https://aradhyaerp.in/#pricing) • [📖 Documentation](https://github.com/aradhyaerp/school-management-system-docs) • [📞 Contact](https://aradhyaerp.in/contact-us)
+
+</div>
+
+---
+
+## 🌟 Overview
+
+The **Aradhya ERP WhatsApp Action Bot** connects parents directly to their school's live ERP database through conversational WhatsApp commands. Parents don't need to remember usernames, passwords, or open a browser—they simply send natural commands like `/fees` or `/attendance` from their registered mobile number!
+
+### 🔄 Architecture Flow
+
+```
+┌─────────────────┐       /fees        ┌───────────────────────┐
+│ Parent WhatsApp │ ─────────────────> │ OpenWA Action Bot     │
+│  (Mobile Phone) │                    │ (Rule Matcher Engine) │
+└─────────────────┘                    └───────────┬───────────┘
+         ▲                                         │
+         │                              HTTP GET /fees?phone=...
+         │                                         ▼
+         │                             ┌───────────────────────┐
+         │     Formatted Reply         │ Aradhya ERP API       │
+         └──────────────────────────── │ (Multi-Tenant Engine) │
+               (Fee Dues + UPI Link)   └───────────────────────┘
+```
+
+---
+
+## 💬 Supported Bot Commands
+
+| Command | Action ID | Description | Sample Parent Experience |
+|:---|:---|:---|:---|
+| `/fees` <br>`/fees [adm_no]` | `fees-query` | Returns real-time fee dues, due date, status, and direct UPI payment link. | `*DPS Academy - Fee Status*`<br>`*Student:* Parth Babu`<br>`*Due Amount:* ₹11,400.00`<br>`*Pay Online:* https://aradhyaerp.in/pay/dps/fees` |
+| `/attendance` <br>`/attendance [adm_no]` | `attendance-query` | Returns today's in-time, punch status, and month-to-date attendance percentage. | `*DPS Academy - Attendance*`<br>`*Today's Status:* Present`<br>`*In-Time:* 08:15 AM`<br>`*Month Attendance:* 94% (21 Days)` |
+| `/homework` | `homework-query` | Returns today's active homework and class assignments. | `*DPS Academy - Homework (07-Nov-2026)*`<br>`Math: Ch 5 Ex 5.2 (Q1-Q10)`<br>`Science: Revise Plants Diagram` |
+| `/notice` | `notice-query` | Fetches the latest circular, holiday notice, or examination announcement with attachment link. | `*DPS Academy - Circular*`<br>`*Parent Teacher Meeting (PTM)*`<br>`Date: 12-Nov-2026`<br>`Attachment: https://aradhyaerp.in/notices/ptm.pdf` |
+| `/help` | `help-query` | Displays the interactive menu of all available bot commands. | Interactive guidance menu in Hindi/Hinglish. |
+
+---
+
+## 📂 Repository Contents
+
+```
+├── actions.json               # Complete Actions JSON schema for OpenWA / HTTP Action Bot
+├── README.md                  # Integration & configuration guide
+├── controllers/               # Sample Laravel controller & middleware reference
+└── schemas/                   # JSON schema definitions
+```
+
+---
+
+## ⚙️ How It Works: Actions JSON Breakdown
+
+The [`actions.json`](./actions.json) file defines the mapping between incoming WhatsApp message triggers and backend ERP endpoints:
+
+### 1. Dynamic Parameter Interpolation
+- `{{session.id}}` — OpenWA WhatsApp instance session identifier.
+- `{{sender.id}}` — WhatsApp JID of the parent (e.g. `919955882299@s.whatsapp.net`).
+- `{{sender.phone}}` — Normalized mobile number of the sender.
+- `{{args.0}}` — First argument passed after the command (e.g., in `/fees 1024`, `args.0` is `1024`).
+
+### 2. Smart Phone Matching
+If a parent messages from their registered WhatsApp number, they **do not need to enter an admission number**—the ERP automatically identifies all linked wards (students) associated with `father_phone`, `mother_phone`, or `guardian_phone`!
+
+### 3. Online Fee Payment Pipeline
+When parents receive the fee message, it includes a secure one-tap payment URL:
+```
+https://aradhyaerp.in/pay/{school-slug}/fees?adm={admission_no}
+```
+- Opens mobile-optimized checkout.
+- Renders dynamic UPI QR code with school merchant VPA (e.g., `school@upi`).
+- Provides 1-tap intent to open **GPay, PhonePe, or Paytm**.
+- Submits UTR number with instant receipt confirmation.
+
+---
+
+## 🛡️ Security & Multi-School Isolation
+
+- **Tenant Isolation:** Every incoming webhook is validated by `VerifyWhatsMsgMultiSchoolBot` middleware.
+- **Session Verification:** Only authorized WhatsApp sessions mapped to the specific school can fetch data.
+- **Rate Limiting:** Ingress throttling protects the ERP from message flooding or spam.
+
+---
+
+## 💎 Pricing & Availability
+
+The Interactive WhatsApp Bot is included out-of-the-box in Aradhya ERP plans:
+- **Starter Plan (₹5/student):** Available as an add-on (@ ₹2,000/month).
+- **Standard Plan (₹10/student):** ✅ **Fully Included** (WhatsApp alerts + Interactive Bot).
+- **Premium Plan (₹15/student):** ✅ **Fully Included** + Free Custom Designed & Printed ID Cards.
+
+---
+
+## 📞 Support & Setup Assistance
+
+For assistance connecting your school's WhatsApp number to Aradhya ERP:
+- 🌐 **Website:** [https://aradhyaerp.in](https://aradhyaerp.in)
+- 📱 **WhatsApp:** [+91 9955882299](https://wa.me/919955882299?text=Hi!+I%27m+interested+in+Aradhya+ERP+WhatsApp+Bot)
+- 📞 **Phone:** [+91 9955882299](tel:+919955882299)
+- 📍 **Headquarters:** Motihari, Bihar, India
+- ✉️ **Email:** [support@aradhyaerp.in](mailto:support@aradhyaerp.in)
+
+<div align="center">
+
+---
+
+**© 2026 Aradhya ERP Technologies. All rights reserved.**  
+*Empowering Education with Intelligent Automation.*
+
+</div>
