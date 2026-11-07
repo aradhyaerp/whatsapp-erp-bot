@@ -1,0 +1,70 @@
+[
+  {
+    "id": "fees-query",
+    "match": {
+      "type": "prefix",
+      "value": "/fees"
+    },
+    "request": {
+      "method": "GET",
+      "path": "/fees?session_id={{session.id}}&sender_id={{sender.id}}&phone={{sender.phone}}&admission_no={{args.0}}"
+    },
+    "replyTemplate": "*{{response.school_name}} - Fee Status*\n\n*Student:* {{response.student_name}}\n*Adm No:* {{response.admission_no}}\n*Due Amount:* {{response.currency}}{{response.total_due}}\n*Due Date:* {{response.due_date}}\n*Status:* {{response.status}}\n\n*Pay Online:* {{response.payment_url}}",
+    "notFoundTemplate": "*{{response.school_name}}:* Record nahi mila. Sahi admission number likhein (e.g. /fees 1024).",
+    "errorTemplate": "ERP service temporary unavailable hai. Kripya thodi der baad prayas karein."
+  },
+  {
+    "id": "attendance-query",
+    "match": {
+      "type": "prefix",
+      "value": "/attendance"
+    },
+    "request": {
+      "method": "GET",
+      "path": "/attendance?session_id={{session.id}}&sender_id={{sender.id}}&phone={{sender.phone}}&admission_no={{args.0}}"
+    },
+    "replyTemplate": "*{{response.school_name}} - Attendance*\n\n*Student:* {{response.student_name}}\n*Today's Status:* {{response.today_status}}\n*In-Time:* {{response.check_in_time}}\n*Month Attendance:* {{response.month_percentage}} ({{response.present_days}})\n\n_Powered by {{response.school_name}} Portal_",
+    "notFoundTemplate": "Student record nahi mila. Sahi admission number dalein.",
+    "errorTemplate": "Attendance service abhi load nahi ho saki."
+  },
+  {
+    "id": "homework-query",
+    "match": {
+      "type": "prefix",
+      "value": "/homework"
+    },
+    "request": {
+      "method": "GET",
+      "path": "/homework?session_id={{session.id}}&sender_id={{sender.id}}&phone={{sender.phone}}"
+    },
+    "replyTemplate": "*{{response.school_name}} - Homework ({{response.date}})*\n\n{{response.summary}}\n\n_Kripya homework samay par pura karein._",
+    "notFoundTemplate": "*{{response.school_name}}:* Aaj koi naya homework assign nahi hua hai.",
+    "errorTemplate": "Homework load karne me samasya aayi."
+  },
+  {
+    "id": "notice-query",
+    "match": {
+      "type": "prefix",
+      "value": "/notice"
+    },
+    "request": {
+      "method": "GET",
+      "path": "/notice?session_id={{session.id}}&sender_id={{sender.id}}"
+    },
+    "replyTemplate": "*{{response.school_name}} - Circular*\n\n*{{response.title}}*\n*Date:* {{response.date}}\n\n{{response.message}}\n\n*Attachment:* {{response.attachment_url}}",
+    "notFoundTemplate": "Is samay koi naya notice active nahi hai.",
+    "errorTemplate": "Notice board data retrieve nahi ho saka."
+  },
+  {
+    "id": "help-query",
+    "match": {
+      "type": "exact",
+      "value": "/help"
+    },
+    "request": {
+      "method": "GET",
+      "path": "/help?session_id={{session.id}}"
+    },
+    "replyTemplate": "*{{response.school_name}} WhatsApp Bot Menu*\n\nAap niche diye gaye commands bhej sakte hain:\n\n1. /fees - Fee balance aur online payment link\n2. /attendance - Aaj ki attendance aur monthly percentage\n3. /homework - Aaj ka class homework\n4. /notice - School ke jaruri circular aur notices\n\n_Tip: Registered mobile number se admission number likhne ki jarurat nahi hoti._"
+  }
+]
