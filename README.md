@@ -103,10 +103,32 @@ The Interactive WhatsApp Bot powered by [WhatsMsg](https://whatsmsg.in/) is incl
 
 ---
 
+## 👨‍💻 Developed & Maintained By
+
+<div align="center">
+
+### 🏢 **[Aradhya Creation](https://aaradhyacreation.in/)**
+*Empowering Businesses & Educational Institutions with Cutting-Edge Software Solutions & Creative Technology.*
+
+[![Aradhya Creation Website](https://img.shields.io/badge/Official_Website-aaradhyacreation.in-1e315a?style=for-the-badge&logo=google-chrome&logoColor=white)](https://aaradhyacreation.in/)
+[![Aradhya Creation Instagram](https://img.shields.io/badge/Instagram-@aradhya__creation-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/aradhya_creation)
+
+<br>
+
+### 👤 **Rohan Kumar** *(Lead Developer & Founder)*
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-rohansingh62-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rohansingh62)
+[![Instagram](https://img.shields.io/badge/Instagram-@rohansingh__62-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/rohansingh_62)
+
+</div>
+
+---
+
 ## 📞 Support & Setup Assistance
 
 For assistance connecting your school's WhatsApp number to Aradhya ERP via [WhatsMsg](https://whatsmsg.in/):
 - 🌐 **Aradhya ERP:** [https://aradhyaerp.in](https://aradhyaerp.in)
+- 🏢 **Company Portal:** [https://aaradhyacreation.in/](https://aaradhyacreation.in/)
 - 💬 **WhatsMsg Gateway:** [https://whatsmsg.in/](https://whatsmsg.in/)
 - 📱 **WhatsApp Support:** [+91 9955882299](https://wa.me/919955882299?text=Hi!+I%27m+interested+in+Aradhya+ERP+WhatsMsg+Bot)
 - 📞 **Phone:** [+91 9955882299](tel:+919955882299)
@@ -117,7 +139,7 @@ For assistance connecting your school's WhatsApp number to Aradhya ERP via [What
 
 ---
 
-**© 2026 Aradhya ERP Technologies & [WhatsMsg](https://whatsmsg.in/). All rights reserved.**  
+**© 2026 [Aradhya ERP Technologies](https://aradhyaerp.in) & [WhatsMsg](https://whatsmsg.in/). Developed with ❤️ by [Aradhya Creation](https://aaradhyacreation.in/) & [Rohan Kumar](https://www.linkedin.com/in/rohansingh62). All rights reserved.**  
 *Empowering Education with Intelligent Automation.*
 
 </div>
